@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 /* Переменные CSS и сброс */
 :root {
   --bg-color: #0f0f0f;
@@ -217,7 +220,7 @@ ul {
   line-height: 1.8;
 }
 
-.about__button-wrapper {
+.about__about__button-wrapper {
   margin-top: 40px;
 }
 .about .btn--outline {
@@ -440,7 +443,7 @@ ul {
   .header__title { font-size: 3.5rem; }
 
   .services__item { flex-direction: column; align-items: flex-start; gap: 10px; }
-  .services__item__name, .services__item-desc { width: 100%; }
+  .services__item-name, .services__item-desc { width: 100%; }
   .services__title { font-size: 3rem; }
 
   .team__grid { grid-template-columns: 1fr; }
