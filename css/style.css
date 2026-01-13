@@ -95,7 +95,7 @@ ul {
   padding-bottom: 50px;
 }
 
-.header__nav {
+.nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -217,7 +217,7 @@ ul {
   line-height: 1.8;
 }
 
-.button-wrapper {
+.about__button-wrapper {
   margin-top: 40px;
 }
 .about .btn--outline {
@@ -262,7 +262,7 @@ ul {
   flex-direction: column;
 }
 
-.service-item {
+.services__item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -270,14 +270,14 @@ ul {
   border-bottom: 1px solid rgba(255,255,255,0.2);
 }
 
-.service-item__name {
+.services__item-name {
   font-family: var(--font-heading);
   font-size: 1.5rem;
   width: 30%;
   letter-spacing: 2px;
 }
 
-.service-item__desc {
+.services__item-desc {
   width: 60%;
   font-size: 0.9rem;
   opacity: 0.8;
@@ -316,27 +316,27 @@ ul {
   gap: 20px;
 }
 
-.team-card {
+.team__card {
   position: relative;
 }
 
-.team-card--large {
+.team__card--large {
   grid-column: span 2;
   grid-row: span 2;
 }
 
-.team-card__img {
+.team__card-img {
   width: 100%;
   height: 100%;
   filter: grayscale(20%);
   transition: 0.3s;
 }
 
-.team-card:hover .team-card__img {
+.team__card:hover .team__card-img {
   filter: grayscale(0);
 }
 
-.team-card__info {
+.team__card-info {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -346,7 +346,7 @@ ul {
   text-align: center;
 }
 
-.team-card__role {
+.team__card-role {
   font-size: 0.7rem;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -354,7 +354,7 @@ ul {
   opacity: 0.8;
 }
 
-.team-card__name {
+.team__card-name {
   font-family: var(--font-heading);
   font-size: 1.2rem;
 }
@@ -439,12 +439,12 @@ ul {
   .nav__burger { display: flex; }
   .header__title { font-size: 3.5rem; }
 
-  .service-item { flex-direction: column; align-items: flex-start; gap: 10px; }
-  .service-item__name, .service-item__desc { width: 100%; }
+  .services__item { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .services__item__name, .services__item-desc { width: 100%; }
   .services__title { font-size: 3rem; }
 
   .team__grid { grid-template-columns: 1fr; }
-  .team-card--large { grid-column: span 1; grid-row: span 1; }
+  .team__card--large { grid-column: span 1; grid-row: span 1; }
 
   .footer__container { flex-direction: column; }
   .footer__image-block, .footer__info-block { width: 100%; }
