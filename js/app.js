@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const submitBtn = form.querySelector('button[type="submit"]');
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.textContent = '⏳ Отправка...';
+        submitBtn.textContent = 'Отправка...';
       }
 
       try {
@@ -143,7 +143,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const master = formData.get('userMaster')?.trim() || 'любой';
         const date = formData.get('bookingDate');
         const time = formData.get('bookingTimeSelect');
+        const comment = formData.get('userComment')?.trim();
 
+        // Валидация на фронтенде
         if (!userName || userName.length < 2) {
           throw new Error('Введите корректное имя');
         }
@@ -156,14 +158,18 @@ document.addEventListener('DOMContentLoaded', () => {
           throw new Error('Выберите дату и время');
         }
 
-        const bookingText = `Запись от ${userName}, телефон ${userPhone}, услуга ${service}, мастер ${master}, время ${date} ${time}`;
+        let bookingText = `Запись от ${userName}, телефон ${userPhone}, услуга ${service}, мастер ${master}, время ${date} ${time}`;
+
+        if (comment && comment.length > 0) {
+          bookingText += `, комментарий: ${comment}`;
+        }
 
         const payload = { text: bookingText };
 
         console.log("📤 ОТПРАВКА:", payload);
 
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 15000);
+        const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 сек для отправки
 
         const response = await fetch(`${BASE_URL}/api/web-booking`, {
           method: 'POST',
@@ -202,6 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
       } finally {
+
         if (submitBtn) {
           submitBtn.disabled = false;
           submitBtn.textContent = 'ОТПРАВИТЬ ДАННЫЕ';
@@ -209,6 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
   }
+
 
   console.log('🔧 Диагностика:');
   console.log(`- Хост: ${window.location.hostname}`);
