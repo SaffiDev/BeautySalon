@@ -1,14 +1,11 @@
-html {
-  scroll-behavior: smooth;
-}
-/* Переменные CSS и сброс */
+html { scroll-behavior: smooth; }
+
 :root {
   --bg-color: #0f0f0f;
   --accent-red: #5e0b15;
   --accent-red-light: #8a1c28;
   --text-color: #e0e0e0;
   --text-muted: #a0a0a0;
-
   --font-heading: 'Cinzel', serif;
   --font-subheading: 'Playfair Display', serif;
   --font-body: 'Montserrat', sans-serif;
@@ -52,7 +49,7 @@ ul {
   list-style: none;
 }
 
-/*Кнопки*/
+/* Кнопки */
 .btn {
   display: inline-block;
   padding: 15px 40px;
@@ -85,10 +82,9 @@ ul {
   background: #a32230;
 }
 
-/* Заголовок(Header сайта) */
+/* Заголовок (Header) */
 .header {
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(60, 10, 20, 0.6)),
-  url('https://img.freepik.com/free-photo/close-up-dew-drops-red-leaves_122409-54.jpg?t=st=1768286965~exp=1768290565~hmac=81fb319c2e716c359436ba78ef1f617de915fb4d17b2437bf013ecb594951137?q=80&w=1600&auto=format&fit=crop');
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(60,10,20,0.6)), url('https://img.freepik.com/free-photo/close-up-dew-drops-red-leaves_122409-54.jpg');
   background-size: cover;
   background-position: center;
   min-height: 100vh;
@@ -140,6 +136,7 @@ ul {
   gap: 5px;
   cursor: pointer;
 }
+
 .nav__burger span {
   width: 25px;
   height: 2px;
@@ -168,7 +165,7 @@ ul {
   transform: rotate(-5deg);
 }
 
-/* О нас*/
+/* О нас */
 .section {
   padding: 80px 0;
 }
@@ -183,7 +180,10 @@ ul {
 .about::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
   pointer-events: none;
 }
@@ -220,13 +220,15 @@ ul {
   line-height: 1.8;
 }
 
-.about__about__button-wrapper {
+.about__button-wrapper {
   margin-top: 40px;
 }
+
 .about .btn--outline {
   border-color: #1a1a1a;
   color: #1a1a1a;
 }
+
 .about .btn--outline:hover {
   background: #1a1a1a;
   color: #fff;
@@ -362,7 +364,7 @@ ul {
   font-size: 1.2rem;
 }
 
-/* Футер*/
+/* Футер */
 .footer__container {
   display: flex;
   gap: 0;
@@ -416,6 +418,7 @@ ul {
   height: 100%;
   filter: grayscale(50%) invert(92%) contrast(85%);
 }
+
 .footer__bottom {
   background: #000;
   color: #fff;
@@ -425,23 +428,17 @@ ul {
   letter-spacing: 2px;
 }
 
-/*Адаптация под телефоны */
+/* АДАПТИВ */
 @media (max-width: 1024px) {
   .header__title { font-size: 5rem; }
   .header__subtitle { font-size: 3rem; }
   .about__container { grid-template-columns: 1fr; }
-  .about__vertical-title {
-    writing-mode: horizontal-tb;
-    transform: none;
-    font-size: 3rem;
-    text-align: center;
-  }
+  .about__vertical-title { writing-mode: horizontal-tb; transform: none; font-size: 3rem; text-align: center; }
   .about__image-wrapper { order: -1; }
 }
 
 @media (max-width: 768px) {
   .nav__list {
-    display: flex;
     position: fixed;
     top: 0;
     right: -100%;
@@ -452,30 +449,14 @@ ul {
     align-items: center;
     justify-content: center;
     gap: 40px;
-    transition: 0.5s ease-in-out;
+    transition: right 0.5s ease-in-out;
     z-index: 999;
   }
-
-  .nav__list.active {
-    right: 0;
-  }
-
-  .nav__burger {
-    display: flex;
-    z-index: 1000;
-    position: relative;
-  }
-
-  .nav__burger.active span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
-  .nav__burger.active span:nth-child(2) {
-    opacity: 0;
-  }
-  .nav__burger.active span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-  }
-
+  .nav__list.active { right: 0; }
+  .nav__burger { display: flex; z-index: 1000; }
+  .nav__burger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav__burger.active span:nth-child(2) { opacity: 0; }
+  .nav__burger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
   .header__title { font-size: 3.5rem; }
   .services__item { flex-direction: column; align-items: flex-start; gap: 10px; }
   .services__item-name, .services__item-desc { width: 100%; }
@@ -486,61 +467,34 @@ ul {
   .footer__image-block, .footer__info-block { width: 100%; }
   .footer__hero-img { min-height: 300px; }
   .footer__title { font-size: 2rem; }
-  .footer__map {
-    height: 200px;
-  }
-}
-/*Стилизация модального окна*/
-
-/* Фон (затемнение) */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 10000;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(8px);
-  animation: fadeIn 0.4s ease;
+  .footer__map { height: 200px; }
 }
 
-/* Контентная область */
+
 .modal__content {
-  background-color: #1a1a1a;
-  margin: 8% auto;
-  padding: 50px;
-  width: 90%;
-  max-width: 500px;
   position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  margin: 20px auto;
+  padding: 30px 20px;
+  width: 90vw;
+  max-width: 520px;
+  background: #1a1a1a;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+  max-height: 90vh;
+  overflow-y: auto;
   animation: slideUp 0.5s ease;
 }
 
-
-.modal__content::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 4px;
-  background: linear-gradient(to right, var(--accent-red), var(--accent-red-light));
-}
-
-/* Кнопка закрытия */
 .modal__close {
   position: absolute;
-  right: 20px; top: 15px;
-  font-size: 28px;
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.modal__close:hover {
+  right: 20px;
+  top: 15px;
+  font-size: 32px;
   color: #fff;
-  transform: rotate(90deg);
+  cursor: pointer;
+  z-index: 100001;
 }
 
-/* Заголовок формы */
 .modal__title {
   font-family: var(--font-heading);
   color: #fff;
@@ -551,7 +505,6 @@ ul {
   text-transform: uppercase;
 }
 
-/* Поля ввода */
 .modal__form {
   display: flex;
   flex-direction: column;
@@ -568,46 +521,14 @@ ul {
   font-family: var(--font-body);
   font-size: 14px;
   outline: none;
-  transition: 0.3s;
 }
 
-.modal__form input:focus,
-.modal__form select:focus,
-.modal__form textarea:focus {
-  border-color: var(--accent-red-light);
-  background: #2a2a2a;
-}
-
-.modal__form textarea {
-  height: 120px;
-  resize: none;
-}
-
-/* Стилизация выпадающего списка */
 .modal__form select {
-  cursor: pointer;
-  appearance: none !important;
-  -webkit-appearance: none !important;
-  -moz-appearance: none !important;
-
-  box-sizing: border-box !important;
-
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E") !important;
-  background-repeat: no-repeat !important;
-
-  background-position: calc(100% - 15px) center !important;
-  background-size: 12px !important;
-
-  padding: 15px 40px 15px 15px !important;
-  width: 100% !important;
-  display: block;
-}
-/* Кнопка в форме */
-.modal__form .btn--solid {
-  margin-top: 10px;
-  width: 100%;
-  padding: 18px;
-  font-weight: bold;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 15px) center;
+  padding-right: 40px;
 }
 
 .booking-datetime-group {
@@ -615,40 +536,107 @@ ul {
   grid-template-columns: 1fr 1fr;
   gap: 15px;
 }
-  /* Анимации */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+
+/* МОДАЛКА — ПРОСТОЙ И РАБОЧИЙ ФИКС ДЛЯ МОБИЛОК + ТУННЕЛЬ (Honor 200 Lite) */
+#bookingModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+#bookingModal.active {
+  display: flex;
+}
+
+.modal__content {
+  position: relative;
+  margin: 15px;
+  padding: 25px 20px;
+  width: calc(100% - 30px);
+  max-width: 500px;
+  background: #1a1a1a;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+  max-height: calc(100vh - 30px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal__close {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 30px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.modal__title {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.booking-datetime-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+/* МОБИЛЬНЫЙ АДАПТИВ (Honor 200 Lite и другие) */
+@media (max-width: 480px) {
+  .modal__content {
+    margin: 10px;
+    padding: 20px 15px;
+    width: calc(100% - 20px);
+    max-height: calc(100vh - 20px);
+    border-radius: 12px;
   }
 
-  @keyframes slideUp {
-    from {
-      transform: translateY(50px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
+  .modal__title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
   }
 
-  /* Мобильная адаптация */
-  @media (max-width: 480px) {
-    .modal__content {
-      padding: 30px 20px;
-      margin: 15% auto;
-    }
-    @media (max-width: 480px) {
-      .booking-datetime-group {
-        grid-template-columns: 1fr;
-      }
-    }
-    .modal__title {
-      font-size: 1.4rem;
-    }
+  .booking-datetime-group {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 
+  .modal__form .btn--solid {
+    padding: 16px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+}
+
+/* БЛОКИРОВКА СКРОЛЛА СТРАНИЦЫ */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* АНИМАЦИЯ */
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Анимации */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
