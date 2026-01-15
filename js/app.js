@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   console.log("🚀 Система запущена.");
 
-  const API_URL = 'https://beauty-cringe-api.serveousercontent.com';
+  const API_URL = 'http://155.212.218.98:5000';
 
   const IS_LOCAL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
   const BASE_URL = IS_LOCAL ? 'http://localhost:5000' : API_URL;
