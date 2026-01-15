@@ -538,58 +538,85 @@ ul {
 }
 
 /* МОДАЛКА — ПРОСТОЙ И РАБОЧИЙ ФИКС ДЛЯ МОБИЛОК + ТУННЕЛЬ (Honor 200 Lite) */
+/* --- БЛОК МОДАЛЬНОГО ОКНА (ПОЛНЫЙ ФИКС) --- */
 #bookingModal {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
   width: 100%;
   height: 100%;
-  z-index: 10000;
-  background: rgba(0, 0, 0, 0.85);
-  display: none;
+  background: rgba(0, 0, 0, 0.9);
+  display: none; /* Скрыто по умолчанию */
   align-items: center;
   justify-content: center;
+  z-index: 99999; /* Самый высокий приоритет */
+  -webkit-tap-highlight-color: transparent;
 }
 
 #bookingModal.active {
   display: flex;
+  animation: fadeIn 0.3s ease;
 }
 
 .modal__content {
   position: relative;
-  margin: 15px;
-  padding: 25px 20px;
-  width: calc(100% - 30px);
-  max-width: 500px;
   background: #1a1a1a;
-  border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-  max-height: calc(100vh - 30px);
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  padding: 40px 25px;
+  border-radius: 20px;
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+  /* ФИКС ДЛЯ ПЕЧАТИ: */
+  pointer-events: auto !important;
+  z-index: 100000;
 }
 
-.modal__close {
-  position: absolute;
-  right: 20px;
-  top: 15px;
-  font-size: 30px;
+/* Фикс для навигации, чтобы она не перекрывала модалку */
+.nav__list {
+  z-index: 999;
+}
+.nav__list.active {
+  z-index: 9999;
+}
+
+/* Стили полей ввода — увеличил шрифт для мобилок, чтобы не зумило */
+.modal__form input,
+.modal__form select,
+.modal__form textarea {
+  width: 100%;
+  background: #252525;
+  border: 1px solid #333;
+  padding: 15px;
   color: #fff;
-  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 16px; /* 16px предотвращает авто-зум на iPhone */
+  border-radius: 8px;
+  outline: none;
+  -webkit-user-select: text; /* Разрешаем ввод */
 }
 
-.modal__title {
-  font-size: 1.8rem;
-  text-align: center;
-  margin-bottom: 25px;
+.modal__form input:focus {
+  border-color: var(--accent-red-light);
 }
 
 .booking-datetime-group {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
+}
+
+@media (max-width: 480px) {
+  .booking-datetime-group {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Блокировка скролла страницы */
+body.modal-open {
+  overflow: hidden;
+  height: 100vh;
 }
 
 /* МОБИЛЬНЫЙ АДАПТИВ (Honor 200 Lite и другие) */
