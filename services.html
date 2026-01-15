@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Услуги | Beauty Salon</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://npmcdn.com/flatpickr/dist/l10n/ru.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header" style="min-height: 40vh;"> <div class="container header__container">
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">YOU X <span class="nav__sublogo">BEAUTY SALON</span></a>
+    <ul class="nav__list">
+      <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+      <li class="nav__item"><a href="services.html" class="nav__link">Услуги</a></li>
+      <li class="nav__item"><a href="team.html" class="nav__link">Мастера</a></li>
+      <li class="nav__item"><a href="#footer" class="nav__link">Контакты</a></li>
+    </ul>
+    <div class="nav__burger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+  <div class="header__content">
+    <h1 class="header__title" style="font-size: 4rem;">УСЛУГИ</h1>
+  </div>
+</div>
+</header>
+
+<section class="services section" id="services">
+  <div class="container">
+    <h2 class="services__title">ПРАЙС-ЛИСТ</h2>
+
+    <div class="services__list">
+      <article class="services__item">
+        <h3 class="services__item-name">МАКИЯЖ</h3>
+        <p class="services__item-desc">Вечерний, свадебный или nude. Мы подчеркнем твою глубину. <br><strong>От 3000 ₽</strong></p>
+      </article>
+
+      <article class="services__item">
+        <h3 class="services__item-name">КОСМЕТОЛОГИЯ</h3>
+        <p class="services__item-desc">Чистки, пилинги и уходовые процедуры для сияния кожи. <br><strong>От 4500 ₽</strong></p>
+      </article>
+
+      <article class="services__item">
+        <h3 class="services__item-name">ВОЛОСЫ</h3>
+        <p class="services__item-desc">Сложные окрашивания (Airtouch, Shatush), стрижки и уход. <br><strong>От 5000 ₽</strong></p>
+      </article>
+
+      <article class="services__item">
+        <h3 class="services__item-name">НОГТИ</h3>
+        <p class="services__item-desc">Маникюр, педикюр, идеальное покрытие и укрепление. <br><strong>От 2500 ₽</strong></p>
+      </article>
+
+      <article class="services__item">
+        <h3 class="services__item-name">БРОВИ</h3>
+        <p class="services__item-desc">Коррекция, окрашивание хной/краской и ламинирование. <br><strong>От 1500 ₽</strong></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer class="footer section" id="footer">
+  <div class="container footer__container">
+    <div class="footer__image-block">
+      <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=800&auto=format&fit=crop" alt="Woman" class="footer__hero-img">
+    </div>
+    <div class="footer__info-block">
+      <h2 class="footer__title">ЗАПИСАТЬСЯ НА <br>ПРОЦЕДУРУ</h2>
+      <div class="footer__details">
+        <p>Улица Поглаживания кошей, Кош</p>
+        <p>Ежедневно с 9:00 до 21:00</p>
+        <p><a href="tel:+78005553535">+7 (800) 555 35 35</a></p>
+      </div>
+      <div class="footer__map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1650.1386700104981!2d50.4643148972574!3d54.20400950507368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x41671305d026fe27%3A0xcc0ad184b0d19a75!2z0KEuINCa0L7RiNC60Lgg0LjRgdGC0L7RgNC40LrQvi3QutGA0LDQtdCy0LXQtNGH0LXRgdC60LjQuSDQnNGD0LfQtdC5!5e0!3m2!1sru!2snl!4v1768469141034!5m2!1sru!2snl"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy">
+        </iframe>
+      </div>
+      <button id="openModalBtn" class="btn btn--solid">ЗАПИСАТЬСЯ</button>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <p>YOU X BEAUTY SALON CENTER</p>
+  </div>
+</footer>
+
+<div id="bookingModal" class="modal">
+  <div class="modal__content">
+    <span class="modal__close">×</span>
+    <h2 class="modal__title">ЗАПИСАТЬСЯ</h2>
+    <form id="bookingForm" class="modal__form">
+      <input type="text" name="userName" placeholder="Ваше имя" required>
+      <input type="tel" name="userPhone" placeholder="Ваш телефон" required>
+
+      <select name="userService" required>
+        <option value="" disabled selected>Выберите услугу</option>
+        <option value="Маникюр">Маникюр</option>
+        <option value="Стрижка">Стрижка</option>
+        <option value="Окрашивание">Окрашивание</option>
+      </select>
+
+      <select name="userMaster" id="masterSelect" required>
+        <option value="" disabled selected>Загрузка мастеров...</option>
+      </select>
+
+      <div class="booking-datetime-group">
+  <select id="bookingDate" name="bookingDate" required>
+    <option value="" disabled selected>Дата визита</option>
+  </select>
+
+  <select id="bookingTimeSelect" name="bookingTimeSelect" required>
+    <option value="" disabled selected>Время</option>
+  </select>
+</div>
+
+      <textarea name="userComment" placeholder="Дополнительные пожелания"></textarea>
+
+      <button type="submit" class="btn btn--solid">ОТПРАВИТЬ ДАННЫЕ</button>
+    </form>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
