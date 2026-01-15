@@ -63,8 +63,21 @@ document.addEventListener('DOMContentLoaded', () => {
     burger.onclick = () => {
       burger.classList.toggle('active');
       navList.classList.toggle('active');
+      document.body.classList.toggle('modal-open');
     };
   }
+
+  const navLinks = document.querySelectorAll('.nav__link');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (navList.classList.contains('active')) {
+        burger.classList.remove('active');
+        navList.classList.remove('active');
+        document.body.classList.remove('modal-open');
+      }
+    });
+  });
 
   async function loadMasters() {
     if (!masterSelect) return;
