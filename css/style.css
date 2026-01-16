@@ -490,7 +490,7 @@ ul {
   animation: slideUp 0.4s ease-out;
 }
 
-/
+
 body.modal-open {
   overflow: hidden;
 }
