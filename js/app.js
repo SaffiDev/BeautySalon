@@ -55,16 +55,22 @@ document.addEventListener('DOMContentLoaded', () => {
   if (openBtn) {
     openBtn.onclick = (e) => {
       e.preventDefault();
-      modal.classList.add('booking__modal--active');
-      document.body.classList.add('modal-open');
-    };
-  }
+      console.log("Кнопка нажата, ищу модалку...");
 
-  if (closeBtn) closeBtn.onclick = closeModal;
+      const modal = document.getElementById('booking__modal');
 
-  if (modal) {
-    modal.onclick = (e) => {
-      if (e.target === modal) closeModal();
+      if (modal) {
+        modal.classList.add('booking__modal--active');
+        document.body.classList.add('modal-open');
+        console.log("Модалка найдена и открыта!");
+      } else {
+        console.error("КРИТИЧЕСКАЯ ОШИБКА: Модалка с id='booking__modal' не найдена в HTML!");
+        const modalByClass = document.querySelector('.booking__modal');
+        if (modalByClass) {
+          modalByClass.classList.add('booking__modal--active');
+          document.body.classList.add('modal-open');
+        }
+      }
     };
   }
 
