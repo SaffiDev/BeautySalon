@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const burger = document.querySelector('.nav__burger');
   const navList = document.querySelector('.nav__list');
-  const modal = document.getElementById('bookingModal');
+  const modal = document.getElementById('booking__modal');
   const openBtn = document.getElementById('openModalBtn');
   const closeBtn = document.querySelector('.modal__close');
   const form = document.getElementById('bookingForm');
@@ -46,34 +46,42 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const closeModal = () => {
-    modal.classList.remove('active');
-    document.body.classList.remove('modal-open');
+    if (modal) {
+      modal.classList.remove('booking__modal--active');
+      document.body.classList.remove('modal-open');
+    }
   };
 
-  if (openBtn) openBtn.onclick = (e) => {
-    e.preventDefault();
-    modal.classList.add('active');
-    document.body.classList.add('modal-open');
-  };
+  if (openBtn) {
+    openBtn.onclick = (e) => {
+      e.preventDefault();
+      modal.classList.add('booking__modal--active');
+      document.body.classList.add('modal-open');
+    };
+  }
 
   if (closeBtn) closeBtn.onclick = closeModal;
-  if (modal) modal.onclick = (e) => { if (e.target === modal) closeModal(); };
+
+  if (modal) {
+    modal.onclick = (e) => {
+      if (e.target === modal) closeModal();
+    };
+  }
 
   if (burger) {
     burger.onclick = () => {
-      burger.classList.toggle('active');
-      navList.classList.toggle('active');
+      burger.classList.toggle('nav__burger--active');
+      navList.classList.toggle('nav__list--active');
       document.body.classList.toggle('modal-open');
     };
   }
 
   const navLinks = document.querySelectorAll('.nav__link');
-
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
-      if (navList.classList.contains('active')) {
-        burger.classList.remove('active');
-        navList.classList.remove('active');
+      if (navList.classList.contains('nav__list--active')) {
+        burger.classList.remove('nav__burger--active');
+        navList.classList.remove('nav__list--active');
         document.body.classList.remove('modal-open');
       }
     });
@@ -158,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const time = formData.get('bookingTimeSelect');
         const comment = formData.get('userComment')?.trim();
 
-        // Валидация на фронтенде
+
         if (!userName || userName.length < 2) {
           throw new Error('Введите корректное имя');
         }

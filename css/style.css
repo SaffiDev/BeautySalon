@@ -27,6 +27,11 @@ body {
   overflow-x: hidden;
 }
 
+body.modal-open {
+  overflow: hidden;
+  height: 100vh;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -82,7 +87,7 @@ ul {
   background: #a32230;
 }
 
-/* Заголовок (Header) */
+/* Заголовок*/
 .header {
   background: linear-gradient(rgba(0,0,0,0.6), rgba(60,10,20,0.6)), url('https://img.freepik.com/free-photo/close-up-dew-drops-red-leaves_122409-54.jpg');
   background-size: cover;
@@ -94,6 +99,29 @@ ul {
   padding-bottom: 50px;
 }
 
+.header__content {
+  text-align: center;
+  margin: auto 0;
+}
+
+.header__title {
+  font-family: var(--font-subheading);
+  font-size: 7rem;
+  font-weight: 400;
+  letter-spacing: 10px;
+  line-height: 1;
+  color: #fff;
+}
+
+.header__subtitle {
+  font-family: var(--font-script);
+  font-size: 4rem;
+  color: #cc4d5e;
+  margin-top: -20px;
+  transform: rotate(-5deg);
+}
+
+/* nav */
 .nav {
   display: flex;
   justify-content: space-between;
@@ -117,6 +145,11 @@ ul {
 .nav__list {
   display: flex;
   gap: 30px;
+  z-index: 999;
+}
+
+.nav__list--active {
+  z-index: 9999;
 }
 
 .nav__link {
@@ -141,28 +174,18 @@ ul {
   width: 25px;
   height: 2px;
   background: #fff;
+  transition: all 0.3s ease;
+}
+.nav__burger--active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
 }
 
-.header__content {
-  text-align: center;
-  margin: auto 0;
+.nav__burger--active span:nth-child(2) {
+  opacity: 0;
 }
 
-.header__title {
-  font-family: var(--font-subheading);
-  font-size: 7rem;
-  font-weight: 400;
-  letter-spacing: 10px;
-  line-height: 1;
-  color: #fff;
-}
-
-.header__subtitle {
-  font-family: var(--font-script);
-  font-size: 4rem;
-  color: #cc4d5e;
-  margin-top: -20px;
-  transform: rotate(-5deg);
+.nav__burger--active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* О нас */
@@ -372,7 +395,8 @@ ul {
   max-width: 100%;
 }
 
-.footer__image-block, .footer__info-block {
+.footer__image-block,
+.footer__info-block {
   width: 50%;
 }
 
@@ -428,86 +452,48 @@ ul {
   letter-spacing: 2px;
 }
 
+/* Модальное окно */
+.booking__modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
 
-@media (max-width: 1024px) {
-  .header__title { font-size: 5rem; }
-  .header__subtitle { font-size: 3rem; }
-  .about__container { grid-template-columns: 1fr; }
-  .about__vertical-title { writing-mode: horizontal-tb; transform: none; font-size: 3rem; text-align: center; }
-  .about__image-wrapper { order: -1; }
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
 }
 
-@media (max-width: 768px) {
-  .nav__list {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 100%;
-    height: 100vh;
-    background: rgba(15, 15, 15, 0.98);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-    transition: right 0.5s ease-in-out;
-    z-index: 999;
-  }
 
-  .nav__list.active {
-    right: 0;
-  }
-
-
-  .nav__burger {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    z-index: 10000;
-    position: relative;
-  }
-
-
-  .nav__burger.active span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
-  .nav__burger.active span:nth-child(2) {
-    opacity: 0;
-  }
-  .nav__burger.active span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-  }
-
-
-  .header__title { font-size: 3.5rem; }
-  .services__item { flex-direction: column; align-items: flex-start; gap: 10px; }
-  .services__item-name, .services__item-desc { width: 100%; }
-  .services__title { font-size: 3rem; }
-  .team__grid { grid-template-columns: 1fr; }
-  .team__card--large { grid-column: span 1; grid-row: span 1; }
-  .footer__container { flex-direction: column; }
-  .footer__image-block, .footer__info-block { width: 100%; }
-  .footer__hero-img { min-height: 300px; }
-  .footer__title { font-size: 2rem; }
-  .footer__map { height: 200px; }
+.booking__modal--active {
+  display: flex !important;
+  animation: fadeIn 0.3s ease;
 }
 
 
 .modal__content {
   position: relative;
-  margin: 20px auto;
-  padding: 30px 20px;
-  width: 90vw;
-  max-width: 520px;
   background: #1a1a1a;
-  border-radius: 16px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-  max-height: 90vh;
-  overflow-y: auto;
-  animation: slideUp 0.5s ease;
+  width: 100%;
+  max-width: 500px;
+  padding: 40px 25px;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.4s ease-out;
 }
 
+/
+body.modal-open {
+  overflow: hidden;
+}
 .modal__close {
   position: absolute;
   right: 20px;
@@ -516,6 +502,11 @@ ul {
   color: #fff;
   cursor: pointer;
   z-index: 100001;
+  transition: transform 0.2s ease;
+}
+
+.modal__close:hover {
+  transform: scale(1.1);
 }
 
 .modal__title {
@@ -537,13 +528,23 @@ ul {
 .modal__form input,
 .modal__form select,
 .modal__form textarea {
+  width: 100%;
   background: #252525;
   border: 1px solid #333;
   padding: 15px;
   color: #fff;
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 16px;
+  border-radius: 8px;
   outline: none;
+  -webkit-user-select: text;
+  transition: border-color 0.3s ease;
+}
+
+.modal__form input:focus,
+.modal__form select:focus,
+.modal__form textarea:focus {
+  border-color: var(--accent-red-light);
 }
 
 .modal__form select {
@@ -554,95 +555,99 @@ ul {
   padding-right: 40px;
 }
 
-.booking-datetime-group {
+.booking__datetime__group {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
 }
 
-/* МОДАЛКА — ПРОСТОЙ И РАБОЧИЙ ФИКС ДЛЯ МОБИЛОК + ТУННЕЛЬ (Honor 200 Lite) */
-/* --- БЛОК МОДАЛЬНОГО ОКНА (ПОЛНЫЙ ФИКС) --- */
-#bookingModal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.9);
-  display: none; /* Скрыто по умолчанию */
-  align-items: center;
-  justify-content: center;
-  z-index: 99999; /* Самый высокий приоритет */
-  -webkit-tap-highlight-color: transparent;
+/*Анимации */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-#bookingModal.active {
-  display: flex;
-  animation: fadeIn 0.3s ease;
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
-.modal__content {
-  position: relative;
-  background: #1a1a1a;
-  width: 90%;
-  max-width: 500px;
-  max-height: 90vh;
-  padding: 40px 25px;
-  border-radius: 20px;
-  overflow-y: auto;
-  box-shadow: 0 10px 50px rgba(0,0,0,0.5);
-  /* ФИКС ДЛЯ ПЕЧАТИ: */
-  pointer-events: auto !important;
-  z-index: 100000;
-}
-
-/* Фикс для навигации, чтобы она не перекрывала модалку */
-.nav__list {
-  z-index: 999;
-}
-.nav__list.active {
-  z-index: 9999;
-}
-
-/* Стили полей ввода — увеличил шрифт для мобилок, чтобы не зумило */
-.modal__form input,
-.modal__form select,
-.modal__form textarea {
-  width: 100%;
-  background: #252525;
-  border: 1px solid #333;
-  padding: 15px;
-  color: #fff;
-  font-family: var(--font-body);
-  font-size: 16px; /* 16px предотвращает авто-зум на iPhone */
-  border-radius: 8px;
-  outline: none;
-  -webkit-user-select: text; /* Разрешаем ввод */
-}
-
-.modal__form input:focus {
-  border-color: var(--accent-red-light);
-}
-
-.booking-datetime-group {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-}
-
-@media (max-width: 480px) {
-  .booking-datetime-group {
-    grid-template-columns: 1fr;
+/* Адаптация под телефон  */
+@media (max-width: 1024px) {
+  .header__title { font-size: 5rem; }
+  .header__subtitle { font-size: 3rem; }
+  .about__container { grid-template-columns: 1fr; }
+  .about__vertical-title {
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: 3rem;
+    text-align: center;
   }
+  .about__image-wrapper { order: -1; }
 }
 
-/* Блокировка скролла страницы */
-body.modal-open {
-  overflow: hidden;
-  height: 100vh;
+@media (max-width: 768px) {
+  .nav__list {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    background: rgba(15, 15, 15, 0.98);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    transition: right 0.5s ease-in-out;
+    z-index: 999;
+  }
+
+
+  .nav__list--active {
+    right: 0;
+  }
+
+  .nav__burger {
+    display: flex;
+    z-index: 10000;
+    position: relative;
+  }
+
+  .header__title { font-size: 3.5rem; }
+
+  .services__item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .services__item-name,
+  .services__item-desc {
+    width: 100%;
+  }
+
+  .services__title { font-size: 3rem; }
+
+  .team__grid { grid-template-columns: 1fr; }
+
+  .team__card--large {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .footer__container { flex-direction: column; }
+
+  .footer__image-block,
+  .footer__info-block {
+    width: 100%;
+  }
+
+  .footer__hero-img { min-height: 300px; }
+  .footer__title { font-size: 2rem; }
+  .footer__map { height: 200px; }
 }
 
-/* МОБИЛЬНЫЙ АДАПТИВ (Honor 200 Lite и другие) */
 @media (max-width: 480px) {
   .modal__content {
     margin: 10px;
@@ -657,7 +662,7 @@ body.modal-open {
     margin-bottom: 15px;
   }
 
-  .booking-datetime-group {
+  .booking__datetime__group {
     grid-template-columns: 1fr;
     gap: 10px;
   }
@@ -667,26 +672,4 @@ body.modal-open {
     margin-top: 10px;
     margin-bottom: 20px;
   }
-}
-
-/* БЛОКИРОВКА СКРОЛЛА СТРАНИЦЫ */
-body.modal-open {
-  overflow: hidden;
-}
-
-/* АНИМАЦИЯ */
-@keyframes slideUp {
-  from { transform: translateY(30px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-/* Анимации */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideUp {
-  from { transform: translateY(50px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
 }
